@@ -19,7 +19,7 @@ Staging:
   <<: *defaults
 
 Production:
-  database: fb-positions_production
-  connections: 100
-  host: localhost
+  database: fb-positions-production
+  port: 10076
+  connections: 10
   <<: *defaults

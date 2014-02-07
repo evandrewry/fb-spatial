@@ -1,0 +1,25 @@
+Default: &defaults
+  user: buddy
+  password: boobs123
+  host: troup.mongohq.com
+  port: 10047
+  database: buddy
+  connections: 10
+
+Development:
+  <<: *defaults
+
+Testing:
+  database: fb-positions_test
+  <<: *defaults
+
+Staging:
+  database: fb-positions_staging
+  connections: 100
+  <<: *defaults
+
+Production:
+  database: fb-positions_production
+  connections: 100
+  host: localhost
+  <<: *defaults

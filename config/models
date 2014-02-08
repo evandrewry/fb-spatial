@@ -1,6 +1,12 @@
 Position json
   fbId Text
   UniqueFbId fbId
+  username Text
+  UniqueUsername username
+  first_name Text
+  gender Text Maybe
+  timezone Int Maybe
+  locale Text Maybe
   position [Double]
   timestamp UTCTime
 

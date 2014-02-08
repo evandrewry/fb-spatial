@@ -4,4 +4,4 @@
 /robots.txt RobotsR GET
 
 / HomeR GET POST
-/position PositionR GET POST PUT
+/position PositionR GET POST PUT OPTIONS

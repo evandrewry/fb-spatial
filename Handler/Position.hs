@@ -4,6 +4,13 @@ import Import
 import Database.MongoDB.Query (runCommand)
 import Data.Bson ((=:))
 
+optionsPositionR :: Handler RepPlain
+optionsPositionR = do
+    addHeader "Access-Control-Allow-Origin" "*"
+    addHeader "Access-Control-Allow-Methods" "GET, POST, PUT, OPTIONS"
+    return $ RepPlain $ toContent ("" :: Text)
+
+
 data FormPosition = FormPosition
   {  fbId       :: Text
   ,  longitude  :: Double
@@ -28,6 +35,7 @@ geoNear lon lat = runDB $ runCommand q >>= (return . fromDocument)
 
 postPositionR :: Handler Value
 postPositionR = do
+    addHeader "Access-Control-Allow-Origin" "*"
     (FormPosition fbId lon lat) <- runInputPost positionForm
     now <- liftIO $ getCurrentTime
     _ <- createOrUpdate $ Position fbId [lon,lat] now
@@ -35,6 +43,7 @@ postPositionR = do
 
 putPositionR :: Handler Value
 putPositionR = do
+    addHeader "Access-Control-Allow-Origin" "*"
     (FormPosition fbId lon lat) <- runInputPost positionForm
     now <- liftIO $ getCurrentTime
     _ <- createOrUpdate $ Position fbId [lon,lat] now
@@ -52,6 +61,7 @@ createOrUpdate position@(Position fbId coords now) = do
 
 getPositionR :: Handler Value
 getPositionR = do
+    addHeader "Access-Control-Allow-Origin" "*"
     (FormPosition fbId lon lat) <- runInputGet positionForm
     now <- liftIO $ getCurrentTime
     _ <- createOrUpdate $ Position fbId [lon,lat] now
